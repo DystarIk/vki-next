@@ -21,3 +21,21 @@ export const getStudentsDb = async (): Promise<StudentInterface[]> => {
 
   return student as StudentInterface[];
 };
+
+export const deleteStudentDb = async (id: number): Promise<number> => {
+  const db = new sqlite3.Database(process.env.DB ?? './db/vki-web.db');
+
+  await new Promise((resolve, reject) => {
+    const sql = `DELETE FROM student WHERE id = ${id}`;
+    db.run(sql, [], (err) => {
+      if (err) {
+        reject(err);
+        db.close();
+        return;
+      }
+      resolve(id);
+      db.close();
+    });
+  });
+  return id;
+};

@@ -1,4 +1,4 @@
-import StudentInterface from '@/types/StudentInterface';
+import type StudentInterface from '@/types/StudentInterface';
 
 export const getStudentsApi = async (): Promise<StudentInterface[]> => {
   try {
